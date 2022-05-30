@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .content {
+            height: 200px;
+            width: 200px;
+            border: 1px solid black;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content"></div>
+
+    <script>
+        var content = document.querySelector('.content');
+        content.addEventListener("mouseover", function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'http://localhost:3000/test');
+            xhr.send('a=1&b=2');
+
+            xhr.onreadystatechange = function() {
+                console.log("readyState: " + xhr.readyState);
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    content.innerHTML = xhr.responseText;
+                }
+            }
+        });
+
+        content.addEventListener("mouseout", function() {
+            content.innerHTML = "";
+        });
+    </script>
+</body>
+
+</html>

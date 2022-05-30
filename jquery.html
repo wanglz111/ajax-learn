@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin="anonymous" src="https://cdn.bootcss.com/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <button>ok</button>
+    <button>ajax</button>
+
+    <script>
+        $('button').eq(0).click(function() {
+            $.get('http://localhost:3000/test', function(data) {
+                console.log(data);
+            });
+        });
+
+        $('button').eq(1).click(function() {
+            $.ajax({
+                url: 'http://localhost:3000/delay',
+                type: 'get',
+                success: function(data) {
+                    console.log(data);
+                },
+                timeout: 1000,
+                error: function(err) {
+                    console.log(err);
+                },
+            });
+        });
+    </script>
+</body>
+
+</html>

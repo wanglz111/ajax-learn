@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引用axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        .content {
+            height: 200px;
+            width: 200px;
+            border: 1px solid black;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <button>axios</button>
+    <div class="content"></div>
+
+    <script>
+        var buttons = document.querySelectorAll('button');
+        buttons[0].onclick = function() {
+            axios.get('http://localhost:3000/test').then(function(res) {
+                console.log(res);
+                var content = document.querySelector('.content');
+                content.innerHTML = res.data;
+            }).catch(function(err) {
+                console.log(err);
+            });
+        };
+    </script>
+
+</body>
+
+</html>
